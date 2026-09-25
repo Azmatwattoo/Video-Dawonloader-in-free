@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Video Downloader</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #080808, #171717);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 550px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #aaa;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    .box {
+      background: #202020;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(0,0,0,.5);
+    }
+
+    input {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      outline: none;
+      border-radius: 12px;
+      background: #303030;
+      color: white;
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #ff3333;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #e52222;
+    }
+
+    .result {
+      display: none;
+      margin-top: 25px;
+      padding: 20px;
+      background: #292929;
+      border-radius: 15px;
+    }
+
+    .result h2 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .result p {
+      color: #aaa;
+      margin-bottom: 15px;
+    }
+
+    .download {
+      background: #18a558;
+    }
+
+    .download:hover {
+      background: #128344;
+    }
+
+    .note {
+      margin-top: 20px;
+      color: #777;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">⬇️</div>
+
+    <h1>Video Downloader</h1>
+
+    <p class="subtitle">
+      Paste an authorized video URL below
+      and download your video easily.
+    </p>
+
+    <div class="box">
+
+      <input
+        type="url"
+        id="videoURL"
+        placeholder="Paste video URL here..."
+      >
+
+      <button onclick="analyzeVideo()">
+        🔍 Analyze Video
+      </button>
+
+      <div class="result" id="result">
+
+        <h2>Video Ready</h2>
+
+        <p id="videoText">
+          Your authorized video is ready.
+        </p>
+
+        <button
+          class="download"
+          onclick="downloadVideo()">
+          📥 Download Video
+        </button>
+
+      </div>
+
+      <p class="note">
+        Only download videos/files that you own or have
+        permission to download.
+      </p>
+
+    </div>
+
+  </div>
+
+<script>
+
+function analyzeVideo() {
+
+  const url = document.getElementById("videoURL").value.trim();
+
+  if (!url) {
+    alert("Please paste a video URL first.");
+    return;
+  }
+
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("videoText").innerText =
+    "URL received. Connect this page to your authorized video-storage backend to enable downloading.";
+}
+
+
+function downloadVideo() {
+
+  const url = document.getElementById("videoURL").value.trim();
+
+  if (!url) {
+    alert("Please enter a video URL.");
+    return;
+  }
+
+  window.open(url, "_blank");
+
+}
+
+</script>
+
+</body>
+</html>
